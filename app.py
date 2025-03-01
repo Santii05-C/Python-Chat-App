@@ -41,6 +41,16 @@ def handle_message(data):
             "message":data["message"]
         }, broadcast=True)
 
+@socketio.io("update_username")
+def handle_update_username(data):
+    old_username = users[request.sid]["username"]
+    new_username = data["username"]
+    users[request.sid]["username"] = new_username
+    
+    emit("username_update",{
+        "old_username":old_username,
+        "new_username":new_username,
+    }, broadcast=True) 
 
 if __name__ == "__main__":
     socketio.run (app)
