@@ -22,7 +22,15 @@ def handle_connect():
     users[request.sid] = { "username":username,"avatar":avatar_url}
     
     emit("user_joined", {"username":username,"avatar":avatar_url},broadcast=True)
+    
+    emit("set_username",{"username":username})
 
+@socketio.on("disconnect")
+def handle_disconnect():
+    user = users.pop(request.sid, None)
+    if user:
+        emit("user_left", {"username":user["username"]},broadcast=True)
+        
 
 if __name__ == "__main__":
     socketio.run (app)
