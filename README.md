@@ -1,8 +1,8 @@
 <h1 align="center">Python Chat App 💬</h1>
 
-![Demo App](/screenshot-for-readme.png)
+![Demo App](/static/screenshot-for-readme.png)
 
-[Video Tutorial on Youtube](https://youtu.be/h991oLxOxeM)
+!Click[here](https://python-chat-app-0jfv.onrender.com/) to try the application!
 
 About This Course:
 
