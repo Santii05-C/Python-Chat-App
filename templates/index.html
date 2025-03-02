@@ -195,6 +195,29 @@
         currentUsername = data.username;
         currentUsernameSpan.textContent = `Your username: ${currentUsername}`;
       });
+
+      socket.on("user_joined", (data) => {
+        addMessage(`${data.username} joined the chat`, "system");
+      });
+
+      socket.on("user_left", (data) => {
+        addMessage(`${data.username} left the chat`, "system");
+      });
+
+      socket.on("new_message", (data) => {
+        addMessage(data.message, "user", data.username, data.avatar);
+      });
+
+      socket.on("username_updated", (data) => {
+        addMessage(
+          `${data.old_username} changed their name to ${data.new_username}`,
+          "system"
+        );
+        if (data.old_username === currentUsername) {
+          currentUsername = data.new_username;
+          currentUsernameSpan.textContent = `Your username: ${currentUsername}`;
+        }
+      });
     </script>
   </body>
 </html>
